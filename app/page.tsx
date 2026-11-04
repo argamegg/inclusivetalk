@@ -101,7 +101,7 @@ export default function Home() {
         <div className="max-w-5xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4 text-sm text-gray-400 dark:text-gray-500">
           <span>© 2026 InclusiveTalk. Создано преподавателем для студентов.</span>
           <a
-            href="https://github.com/P12inc3/inclusivetalk"
+            href="https://github.com/argamegg/inclusivetalk"
             target="_blank"
             rel="noopener noreferrer"
             className="hover:text-gray-700 dark:hover:text-gray-300 transition-colors"

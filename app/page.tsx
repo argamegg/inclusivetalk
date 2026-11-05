@@ -7,13 +7,13 @@ export default function Home() {
     <div className="min-h-screen flex flex-col bg-white dark:bg-gray-950">
       <SiteHeader />
 
-      <main className="flex-1">
+      <main id="main" className="flex-1">
         {/* Hero */}
         <section className="flex flex-col items-center text-center px-6 py-16 md:py-24">
           <div className="max-w-2xl mx-auto space-y-8">
             <Image
               src="/logorb.png"
-              alt="InclusiveTalk"
+              alt=""
               width={200}
               height={200}
               className="mx-auto rounded-3xl shadow-lg dark:brightness-0 dark:invert"
@@ -24,10 +24,10 @@ export default function Home() {
               <h1 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white tracking-tight">
                 InclusiveTalk
               </h1>
-              <p className="text-xl md:text-2xl text-gray-600 dark:text-gray-300 font-medium">
+              <p className="text-xl md:text-2xl text-gray-700 dark:text-gray-200 font-medium">
                 Живые субтитры для глухих и слабослышащих студентов
               </p>
-              <p className="text-base text-gray-500 dark:text-gray-400 leading-relaxed max-w-lg mx-auto">
+              <p className="text-base text-gray-700 dark:text-gray-300 leading-relaxed max-w-lg mx-auto">
                 Веб-приложение для классов где учатся слышащие и неслышащие студенты.
                 Преподаватель ведёт урок голосом — студенты получают субтитры на своих
                 устройствах в реальном времени. Работает на русском, казахском и английском.
@@ -37,13 +37,13 @@ export default function Home() {
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link
                 href="/teacher"
-                className="px-8 py-4 bg-blue-600 hover:bg-blue-700 active:bg-blue-800 text-white text-lg font-semibold rounded-2xl transition-colors text-center"
+                className="px-8 py-4 bg-blue-700 hover:bg-blue-800 active:bg-blue-900 text-white text-lg font-semibold rounded-2xl transition-colors text-center"
               >
                 Я преподаватель
               </Link>
               <Link
                 href="/student"
-                className="px-8 py-4 border-2 border-gray-300 dark:border-gray-600 hover:border-blue-500 dark:hover:border-blue-500 text-gray-900 dark:text-white hover:text-blue-600 dark:hover:text-blue-400 text-lg font-semibold rounded-2xl transition-colors text-center"
+                className="px-8 py-4 border-2 border-gray-400 dark:border-gray-500 hover:border-blue-700 dark:hover:border-blue-400 text-gray-900 dark:text-white hover:text-blue-800 dark:hover:text-blue-300 text-lg font-semibold rounded-2xl transition-colors text-center"
               >
                 Я студент
               </Link>
@@ -60,33 +60,33 @@ export default function Home() {
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
               <div className="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-2xl p-8 shadow-sm">
-                <div className="text-5xl mb-4">🎤</div>
+                <div aria-hidden="true" className="text-5xl mb-4">🎤</div>
                 <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-3">
                   1. Преподаватель начинает урок
                 </h3>
-                <p className="text-gray-500 dark:text-gray-400 leading-relaxed">
+                <p className="text-gray-700 dark:text-gray-300 leading-relaxed">
                   Открывает страницу преподавателя, выбирает язык, нажимает «Начать урок»
                   и говорит как обычно.
                 </p>
               </div>
 
               <div className="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-2xl p-8 shadow-sm">
-                <div className="text-5xl mb-4">🔢</div>
+                <div aria-hidden="true" className="text-5xl mb-4">🔢</div>
                 <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-3">
                   2. Делится кодом урока
                 </h3>
-                <p className="text-gray-500 dark:text-gray-400 leading-relaxed">
+                <p className="text-gray-700 dark:text-gray-300 leading-relaxed">
                   Система генерирует 6-значный код. Преподаватель сообщает его студентам
                   устно или на доске.
                 </p>
               </div>
 
               <div className="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-2xl p-8 shadow-sm">
-                <div className="text-5xl mb-4">📱</div>
+                <div aria-hidden="true" className="text-5xl mb-4">📱</div>
                 <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-3">
                   3. Студенты читают субтитры
                 </h3>
-                <p className="text-gray-500 dark:text-gray-400 leading-relaxed">
+                <p className="text-gray-700 dark:text-gray-300 leading-relaxed">
                   Студенты вводят код на своих телефонах и видят что говорит преподаватель
                   в реальном времени.
                 </p>
@@ -98,15 +98,15 @@ export default function Home() {
 
       {/* Footer */}
       <footer className="border-t border-gray-100 dark:border-gray-800 px-6 py-6">
-        <div className="max-w-5xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4 text-sm text-gray-400 dark:text-gray-500">
+        <div className="max-w-5xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4 text-sm text-gray-600 dark:text-gray-300">
           <span>© 2026 InclusiveTalk. Создано преподавателем для студентов.</span>
           <a
             href="https://github.com/argamegg/inclusivetalk"
             target="_blank"
             rel="noopener noreferrer"
-            className="hover:text-gray-700 dark:hover:text-gray-300 transition-colors"
+            className="underline underline-offset-4 hover:text-gray-900 dark:hover:text-white transition-colors"
           >
-            GitHub
+            GitHub<span className="sr-only"> (откроется в новой вкладке)</span>
           </a>
         </div>
       </footer>

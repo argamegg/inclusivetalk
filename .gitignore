@@ -63,8 +63,3 @@ Desktop.ini
 
 # ── ML experiments (large datasets/models, kept locally) ─────
 ml_training/
-
-# ── AI agent instructions (local only) ────────────────────────
-CLAUDE.md
-AGENTS.md
-.claude/

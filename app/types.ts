@@ -9,6 +9,8 @@ export interface FeedbackItem {
   timestamp: number
   studentId: string
   studentName: string
+  /** Teacher pressed "Seen"; the student was notified */
+  acknowledged?: boolean
 }
 
 export interface StudentInfo {

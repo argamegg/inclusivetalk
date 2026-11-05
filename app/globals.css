@@ -5,6 +5,7 @@
 :root {
   --background: #ffffff;
   --foreground: #171717;
+  --focus-ring: #1d4ed8;
 }
 
 @theme inline {
@@ -16,6 +17,7 @@
 .dark {
   --background: #0a0a0a;
   --foreground: #ededed;
+  --focus-ring: #93c5fd;
 }
 
 body {
@@ -23,3 +25,85 @@ body {
   color: var(--foreground);
   font-size: 18px;
 }
+
+/*
+ * Accessibility layer.
+ * These rules are intentionally outside Tailwind's layers, so they always win
+ * over utilities (e.g. an accidental `focus:outline-none`).
+ */
+
+/* ── Visible keyboard focus everywhere (WCAG 2.4.7, 2.4.11) ─────────────── */
+:focus-visible {
+  outline: 3px solid var(--focus-ring);
+  outline-offset: 2px;
+}
+input:focus-visible + .it-choice {
+  outline: 3px solid var(--focus-ring);
+  outline-offset: 2px;
+}
+
+/* ── Calm motion: system setting or student's "turn off animation" ────────── */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+html[data-motion="reduce"] *,
+html[data-motion="reduce"] *::before,
+html[data-motion="reduce"] *::after {
+  animation-duration: 0.01ms !important;
+  animation-iteration-count: 1 !important;
+  transition-duration: 0.01ms !important;
+  scroll-behavior: auto !important;
+}
+
+/* ── Captions: user-adjustable size (student display settings) ──────────── */
+.it-caption {
+  font-size: var(--caption-size);
+  line-height: 1.5;
+}
+:root                         { --caption-size: 1.875rem; }
+html[data-caption-size="s"]   { --caption-size: 1.5rem; }
+html[data-caption-size="m"]   { --caption-size: 1.875rem; }
+html[data-caption-size="l"]   { --caption-size: 2.5rem; }
+html[data-caption-size="xl"]  { --caption-size: 3.25rem; }
+html[data-caption-size="xxl"] { --caption-size: 4rem; }
+
+/* ── Easy-to-read font + spacing (dyslexia, low vision; WCAG 1.4.12) ────── */
+html[data-font="readable"] body {
+  font-family: var(--font-readable), system-ui, sans-serif;
+  letter-spacing: 0.03em;
+  word-spacing: 0.12em;
+}
+html[data-font="readable"] .it-caption {
+  line-height: 1.75;
+}
+
+/* ── High contrast: yellow captions on black, white text and borders ────── */
+html[data-contrast="high"] {
+  --background: #000000;
+  --foreground: #ffffff;
+  --focus-ring: #ffeb3b;
+}
+html[data-contrast="high"] .it-surface { background-color: #000000; }
+html[data-contrast="high"] .it-text,
+html[data-contrast="high"] .it-muted { color: #ffffff; }
+html[data-contrast="high"] .it-caption { color: #ffeb3b; }
+html[data-contrast="high"] .it-border { border-color: #ffffff; }
+html[data-contrast="high"] .it-signal { box-shadow: inset 0 0 0 3px #ffffff; }
+html[data-contrast="high"] .it-choice {
+  background-color: #000000;
+  border-color: #ffffff;
+  color: #ffffff;
+}
+html[data-contrast="high"] ::placeholder { color: #d4d4d4; }
+html[data-contrast="high"] .it-choice[aria-pressed="true"],
+html[data-contrast="high"] input:checked + .it-choice {
+  background-color: #ffeb3b;
+  border-color: #ffeb3b;
+  color: #000000;
+}
+html[data-contrast="high"] .it-logo { filter: brightness(0) invert(1); }

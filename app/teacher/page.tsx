@@ -7,7 +7,7 @@ import Dialog from '../components/Dialog'
 import { useWakeLock } from '../useWakeLock'
 import { useMounted } from '../useMounted'
 import { SIGNAL_LABELS } from '../i18n'
-import { LANGS, LANG_NAMES, SIGNALS, WS_URL, MAX_RECONNECT_ATTEMPTS, reconnectDelay, makeId, type Lang } from '../constants'
+import { LANGS, LANG_NAMES, SIGNALS, getWsUrl, MAX_RECONNECT_ATTEMPTS, reconnectDelay, makeId, type Lang } from '../constants'
 
 type LessonState = 'idle' | 'connecting' | 'active' | 'stopped' | 'error'
 
@@ -120,7 +120,7 @@ function clearSavedLesson(): void {
 /** Properly closes a lesson left over from a previous page, so its students see "lesson ended". */
 function endLeftoverLesson(lesson: SavedLesson): void {
   try {
-    const ws = new WebSocket(WS_URL)
+    const ws = new WebSocket(getWsUrl())
     ws.onopen = () => ws.send(JSON.stringify({ type: 'register', role: 'teacher', code: lesson.code, language: lesson.lang, token: lesson.token }))
     ws.onmessage = e => {
       const msg = JSON.parse(String(e.data)) as { type?: string }
@@ -253,7 +253,7 @@ export default function TeacherPage() {
 
   const connectWs = useCallback((roomCode: string, lang: Lang, token: string | null) => {
     closeWs()
-    const ws = new WebSocket(WS_URL)
+    const ws = new WebSocket(getWsUrl())
     wsRef.current = ws
 
     ws.onopen = () => {

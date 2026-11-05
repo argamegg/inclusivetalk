@@ -10,7 +10,7 @@ import { useMounted } from '../useMounted'
 import { useWakeLock } from '../useWakeLock'
 import { SIGNAL_LABELS, UI_LABELS, type UILabels } from '../i18n'
 import {
-  LANGS, LANG_NAMES, SIGNALS, WS_URL, MAX_RECONNECT_ATTEMPTS,
+  LANGS, LANG_NAMES, SIGNALS, getWsUrl, MAX_RECONNECT_ATTEMPTS,
   reconnectDelay, makeId, prefersReducedMotion, type Lang,
 } from '../constants'
 import { applyDisplaySettings, clearDisplaySettings, getDisplaySettings, useDisplaySettings } from '../displaySettings'
@@ -234,7 +234,7 @@ export default function StudentPage() {
       reconnectTimerRef.current = null
     }
 
-    const ws = new WebSocket(WS_URL)
+    const ws = new WebSocket(getWsUrl())
     wsRef.current = ws
 
     ws.onopen = () => {

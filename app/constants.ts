@@ -19,7 +19,17 @@ export const SIGNALS: Array<{ type: SignalType; icon: string; bg: string; active
   { type: 'understood', icon: '✓',  bg: 'bg-emerald-700', activeBg: 'active:bg-emerald-800' },
 ]
 
-export const WS_URL = process.env.NEXT_PUBLIC_WS_URL ?? 'ws://localhost:3001/ws'
+/**
+ * Backend WebSocket address. Without NEXT_PUBLIC_WS_URL, use the host the page
+ * was opened from, so a phone visiting http://192.168.x.x:3000 reaches the
+ * backend on that machine instead of its own "localhost".
+ */
+export function getWsUrl(): string {
+  if (process.env.NEXT_PUBLIC_WS_URL) return process.env.NEXT_PUBLIC_WS_URL
+  if (typeof window === 'undefined') return 'ws://localhost:3001/ws'
+  const proto = window.location.protocol === 'https:' ? 'wss' : 'ws'
+  return `${proto}://${window.location.hostname}:3001/ws`
+}
 
 export const MAX_RECONNECT_ATTEMPTS = 5
 
